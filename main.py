@@ -4,14 +4,18 @@ from game import Game
 
 print "Welcome to Pythopoly!"
 game = Game()
-game.start()
+game.setup()
 
 
 
 dice = Dice()
 
-
-
+print "Roll the dice to see who goes first!"
+for player in game.player_names:
+    raw_input (player)
+    dice.roll()
+    print dice.description()
+    
 
 while True:
     print
