@@ -12,4 +12,5 @@ while True:
     game.start_turn()
     dice.roll()
     print dice.description_with_doubles()
+    game.move_current_player(dice.total())
     game.end_turn()
