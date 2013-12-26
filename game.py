@@ -50,8 +50,11 @@ class Game:
             "Luxury Tax",
             "Boardwalk" ]
 
+    def current_player(self):
+        return self.players[self.current_player_index]
+        
     def current_player_name(self):
-        return self.players[self.current_player_index].name
+        return self.current_player().name
         
     def start_turn(self):
         print "Start your turn, %s" % self.current_player_name()
@@ -83,5 +86,7 @@ class Game:
         print "%s goes first!" % self.current_player_name()
 
     def move_current_player(self, number_of_spaces):
-        self.players[self.current_player_index].position_on_board += number_of_spaces
-        print "%s is on %s" % (self.current_player_name(), self.board[self.players[self.current_player_index].position_on_board])
+        self.current_player().move(number_of_spaces, len(self.board))
+        if self.current_player().passed_go:
+            print "You passed Go!"
+        print "You are on %s" % self.board[self.current_player().position_on_board]
