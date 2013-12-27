@@ -1,6 +1,8 @@
 
 from player import Player
 from dice import Dice
+from space import Space
+from tax_space import TaxSpace
 
 class Game:
 
@@ -9,46 +11,46 @@ class Game:
         self.players = [Player() for player in range(0,self.number_of_players)]
         self.current_player_index = 0
         self.board = [
-            "Go",
-            "Mediterranean Avenue",
-            "Community Chest",
-            "Baltic Avenut",
-            "Income Tax",
-            "Redding Railroad",
-            "Oriental Avenue",
-            "Chance",
-            "Vermont Avenue",
-            "Connecticut Avenue",
-            "Jail",
-            "St. Charles Place",
-            "Electric Company",
-            "States Avenue",
-            "Virginia Avenue",
-            "Pennsylvania Railroad",
-            "St. James Place",
-            "Community Chest",
-            "Tennessee Avenue",
-            "New York Avenue",
-            "Free Parking",
-            "Kentucky Avenue",
-            "Chance",
-            "Indiana Avenue",
-            "Illinois Avenue",
-            "B&O Railroad",
-            "Atlantic Avenue",
-            "Ventnor Avenue",
-            "Waterworks",
-            "Marvin Gardens",
-            "Go To Jail",
-            "Pacific Avenue",
-            "Norh Carolina Avenue",
-            "Community Chest",
-            "Pennsylvania Avenue",
-            "Short Line",
-            "Chance",
-            "Park Place",
-            "Luxury Tax",
-            "Boardwalk" ]
+            Space("Go"),
+            Space("Mediterranean Avenue"),
+            Space("Community Chest"),
+            Space("Baltic Avenut"),
+            TaxSpace("Income Tax", 200),
+            Space("Redding Railroad"),
+            Space("Oriental Avenue"),
+            Space("Chance"),
+            Space("Vermont Avenue"),
+            Space("Connecticut Avenue"),
+            Space("Jail"),
+            Space("St. Charles Place"),
+            Space("Electric Company"),
+            Space("States Avenue"),
+            Space("Virginia Avenue"),
+            Space("Pennsylvania Railroad"),
+            Space("St. James Place"),
+            Space("Community Chest"),
+            Space("Tennessee Avenue"),
+            Space("New York Avenue"),
+            Space("Free Parking"),
+            Space("Kentucky Avenue"),
+            Space("Chance"),
+            Space("Indiana Avenue"),
+            Space("Illinois Avenue"),
+            Space("B&O Railroad"),
+            Space("Atlantic Avenue"),
+            Space("Ventnor Avenue"),
+            Space("Waterworks"),
+            Space("Marvin Gardens"),
+            Space("Go To Jail"),
+            Space("Pacific Avenue"),
+            Space("Norh Carolina Avenue"),
+            Space("Community Chest"),
+            Space("Pennsylvania Avenue"),
+            Space("Short Line"),
+            Space("Chance"),
+            Space("Park Place"),
+            TaxSpace("Luxury Tax", 100),
+            Space("Boardwalk" )]
 
     def current_player(self):
         return self.players[self.current_player_index]
@@ -89,4 +91,7 @@ class Game:
         self.current_player().move(number_of_spaces, len(self.board))
         if self.current_player().passed_go:
             print "You passed Go!"
-        print "You are on %s" % self.board[self.current_player().position_on_board]
+        space = self.board[self.current_player().position_on_board]
+        space.handle_player_landing(self.current_player())
+        print "You have $%i" % self.current_player().cash
+
