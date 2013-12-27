@@ -3,6 +3,7 @@ from player import Player
 from dice import Dice
 from space import Space
 from tax_space import TaxSpace
+from go_to_jail_space import GoToJailSpace
 
 class Game:
 
@@ -11,46 +12,53 @@ class Game:
         self.players = [Player() for player in range(0,self.number_of_players)]
         self.current_player_index = 0
         self.board = [
-            Space("Go"),
-            Space("Mediterranean Avenue"),
-            Space("Community Chest"),
-            Space("Baltic Avenut"),
-            TaxSpace("Income Tax", 200),
-            Space("Redding Railroad"),
-            Space("Oriental Avenue"),
-            Space("Chance"),
-            Space("Vermont Avenue"),
-            Space("Connecticut Avenue"),
-            Space("Jail"),
-            Space("St. Charles Place"),
-            Space("Electric Company"),
-            Space("States Avenue"),
-            Space("Virginia Avenue"),
-            Space("Pennsylvania Railroad"),
-            Space("St. James Place"),
-            Space("Community Chest"),
-            Space("Tennessee Avenue"),
-            Space("New York Avenue"),
-            Space("Free Parking"),
-            Space("Kentucky Avenue"),
-            Space("Chance"),
-            Space("Indiana Avenue"),
-            Space("Illinois Avenue"),
-            Space("B&O Railroad"),
-            Space("Atlantic Avenue"),
-            Space("Ventnor Avenue"),
-            Space("Waterworks"),
-            Space("Marvin Gardens"),
-            Space("Go To Jail"),
-            Space("Pacific Avenue"),
-            Space("Norh Carolina Avenue"),
-            Space("Community Chest"),
-            Space("Pennsylvania Avenue"),
-            Space("Short Line"),
-            Space("Chance"),
-            Space("Park Place"),
-            TaxSpace("Luxury Tax", 100),
-            Space("Boardwalk" )]
+            Space("Go", self),
+            Space("Mediterranean Avenue",self),
+            Space("Community Chest",self),
+            Space("Baltic Avenut",self),
+            TaxSpace("Income Tax",self, 200),
+            Space("Redding Railroad",self),
+            Space("Oriental Avenue",self),
+            Space("Chance",self),
+            Space("Vermont Avenue",self),
+            Space("Connecticut Avenue",self),
+            Space("Jail",self),
+            Space("St. Charles Place",self),
+            Space("Electric Company",self),
+            Space("States Avenue",self),
+            Space("Virginia Avenue",self),
+            Space("Pennsylvania Railroad",self),
+            Space("St. James Place",self),
+            Space("Community Chest",self),
+            Space("Tennessee Avenue",self),
+            Space("New York Avenue",self),
+            Space("Free Parking",self),
+            Space("Kentucky Avenue",self),
+            Space("Chance",self),
+            Space("Indiana Avenue",self),
+            Space("Illinois Avenue",self),
+            Space("B&O Railroad",self),
+            Space("Atlantic Avenue",self),
+            Space("Ventnor Avenue",self),
+            Space("Waterworks",self),
+            Space("Marvin Gardens",self),
+            GoToJailSpace("Go To Jail",self),
+            Space("Pacific Avenue",self),
+            Space("Norh Carolina Avenue",self),
+            Space("Community Chest",self),
+            Space("Pennsylvania Avenue",self),
+            Space("Short Line",self),
+            Space("Chance",self),
+            Space("Park Place",self),
+            TaxSpace("Luxury Tax",self, 100),
+            Space("Boardwalk",self )]
+
+    def move_current_player_to_space(self, space_name):
+        for space in self.board:
+            if space.name == space_name:
+                space_number = self.board.index(space)
+                self.current_player().position_on_board = space_number
+
 
     def current_player(self):
         return self.players[self.current_player_index]
@@ -87,9 +95,35 @@ class Game:
         self.current_player_index = highest_rollers.pop()
         print "%s goes first!" % self.current_player_name()
 
+    def play(self):
+        dice = Dice()
+        while True:
+            print
+            self.start_turn()
+            if self.current_player().in_jail:
+                print "You are in jail."
+                dice.roll()
+                print dice.description_with_doubles()
+                if dice.is_doubles():
+                    print "You can move"
+                    self.current_player().in_jail = False
+                    self.move_current_player(dice.total())
+                # They have to roll doubles
+            else:
+                roll_the_dice = True
+                while roll_the_dice:
+                    dice.roll()
+                    print dice.description_with_doubles()
+                    self.move_current_player(dice.total())
+                    # Do things during the turn
+                    roll_the_dice = dice.is_doubles()
+            self.end_turn()
+
+
     def move_current_player(self, number_of_spaces):
         self.current_player().move(number_of_spaces, len(self.board))
         space = self.board[self.current_player().position_on_board]
         space.handle_player_landing(self.current_player())
         print "You have $%i" % self.current_player().cash
-
+        if self.current_player().in_jail:
+            print "You are in jail"
