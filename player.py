@@ -10,6 +10,5 @@ class Player:
         self.position_on_board += spaces
         if self.position_on_board >= board_size:
             self.position_on_board = self.position_on_board % board_size
-            self.passed_go = True
-        else:
-            self.passed_go = False
+            print "You passed Go! Collect $200"
+            self.cash += 200

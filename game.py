@@ -89,8 +89,6 @@ class Game:
 
     def move_current_player(self, number_of_spaces):
         self.current_player().move(number_of_spaces, len(self.board))
-        if self.current_player().passed_go:
-            print "You passed Go!"
         space = self.board[self.current_player().position_on_board]
         space.handle_player_landing(self.current_player())
         print "You have $%i" % self.current_player().cash
