@@ -1,9 +1,10 @@
 
-from dice import Dice
-from game import Game
+from game_board import GameBoard
+from turn_maker import TurnMaker
 
 print "Welcome to Pythopoly!"
-game = Game()
-game.setup()
-game.roll_to_see_who_goes_first()
-game.play()
+b = GameBoard()
+t = TurnMaker()
+t.setup(b)
+t.roll_to_see_who_goes_first()
+t.play()
