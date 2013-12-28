@@ -7,6 +7,7 @@ class Player:
         self.cash = 2*500+4*100+50+20+2*10+5+5*1
         self.position = 0
         self.in_jail = False
+        self.properties = []
 
     def move_to_space(self, space_name):
         new_position = self.board.get_position(space_name)
@@ -52,6 +53,7 @@ class Player:
                 # Do things during the turn
                 roll_the_dice = dice.is_doubles()
         print "Your turn is over, %s" % self.name
+        if self.properties:
+            print "You own: " + ",".join([p.name for p in self.properties])
 
-
-            
+        

@@ -11,4 +11,11 @@ class PropertySpace(Space):
     def handle_player_landing(self, player):
         Space.handle_player_landing(self, player)
         print "It costs $%i" % self.cost
+        if player.cash >= self.cost:
+            command = raw_input("(B)uy (A)uction >").upper()[0]
+            if command == 'B':
+                player.cash -= self.cost
+                player.properties.append(self)
+            elif command == 'A':
+                pass
 
