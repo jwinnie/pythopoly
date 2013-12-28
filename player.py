@@ -44,11 +44,14 @@ class Player:
         else:
             roll_the_dice = True
             while roll_the_dice:
+                space = self.board.get_space(self.position)
+                print "You are on %s." % space.name
                 dice.roll()
                 print dice.description_with_doubles()
                 self.move(dice.total())
                 # Do things during the turn
                 roll_the_dice = dice.is_doubles()
         print "Your turn is over, %s" % self.name
+
 
             
