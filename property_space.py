@@ -12,7 +12,9 @@ class PropertySpace(Space):
         Space.handle_player_landing(self, player)
         print "It costs $%i" % self.cost
         if player.cash >= self.cost:
-            command = raw_input("(B)uy (A)uction >").upper()[0]
+            command = ""
+            while not command:
+                command = raw_input("(B)uy (A)uction >").upper()
             if command == 'B':
                 player.cash -= self.cost
                 player.properties.append(self)
