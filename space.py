@@ -3,9 +3,8 @@
 
 class Space:
 
-    def __init__(self, name, game):
+    def __init__(self, name):
         self.name = name
-        self.game = game
 
     def handle_player_landing(self, player):
         print "You landed on %s" % self.name
