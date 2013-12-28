@@ -2,10 +2,13 @@ from space import Space
 from tax_space import TaxSpace
 from go_to_jail_space import GoToJailSpace
 from property_space import PropertySpace
+from card_space import CardSpace
+from card_deck import CardDeck
 
 class GameBoard:
 
     def __init__(self):
+        chance_deck = CardDeck()
         self.spaces = [
             Space("Go"),
             PropertySpace("Mediterranean Avenue",60),
@@ -14,7 +17,7 @@ class GameBoard:
             TaxSpace("Income Tax", 200),
             PropertySpace("Redding Railroad",200),
             PropertySpace("Oriental Avenue",100),
-            Space("Chance"),
+            CardSpace("Chance", chance_deck),
             PropertySpace("Vermont Avenue",100),
             PropertySpace("Connecticut Avenue",120),
             Space("Jail"),
@@ -29,7 +32,7 @@ class GameBoard:
             PropertySpace("New York Avenue",200),
             Space("Free Parking"),
             PropertySpace("Kentucky Avenue",220),
-            Space("Chance"),
+            CardSpace("Chance",chance_deck),
             PropertySpace("Indiana Avenue",220),
             PropertySpace("Illinois Avenue",240),
             PropertySpace("B&O Railroad",200),
@@ -43,7 +46,7 @@ class GameBoard:
             Space("Community Chest"),
             PropertySpace("Pennsylvania Avenue",320),
             PropertySpace("Short Line",200),
-            Space("Chance"),
+            CardSpace("Chance",chance_deck),
             PropertySpace("Park Place",350),
             TaxSpace("Luxury Tax", 100),
             PropertySpace("Boardwalk",400)]
@@ -54,6 +57,5 @@ class GameBoard:
             if space.name == space_name:
                 return self.spaces.index(space)
         
-
     def get_space(self, space_number):
         return self.spaces[space_number]

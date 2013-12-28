@@ -50,3 +50,5 @@ class Player:
                 # Do things during the turn
                 roll_the_dice = dice.is_doubles()
         print "Your turn is over, %s" % self.name
+
+            

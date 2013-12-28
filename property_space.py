@@ -11,3 +11,4 @@ class PropertySpace(Space):
     def handle_player_landing(self, player):
         Space.handle_player_landing(self, player)
         print "It costs $%i" % self.cost
+
