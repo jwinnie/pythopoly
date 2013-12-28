@@ -15,7 +15,7 @@ class GameBoard:
             Space("Community Chest"),
             PropertySpace("Baltic Avenue",60),
             TaxSpace("Income Tax", 200),
-            PropertySpace("Redding Railroad",200),
+            PropertySpace("Reading Railroad",200),
             PropertySpace("Oriental Avenue",100),
             CardSpace("Chance", chance_deck),
             PropertySpace("Vermont Avenue",100),
