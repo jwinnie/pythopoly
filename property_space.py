@@ -7,17 +7,25 @@ class PropertySpace(Space):
     def __init__(self, name, cost):
         Space.__init__(self, name)
         self.cost = cost
+        self.status = 'AVAILABLE'
 
     def handle_player_landing(self, player):
         Space.handle_player_landing(self, player)
-        print "It costs $%i" % self.cost
-        if player.cash >= self.cost:
-            command = ""
-            while not command:
-                command = raw_input("(B)uy (A)uction >").upper()
-            if command == 'B':
-                player.cash -= self.cost
-                player.properties.append(self)
-            elif command == 'A':
-                pass
+        if self.status == 'AVAILABLE':
+            print "It costs $%i" % self.cost
+            if player.cash >= self.cost:
+                command = ""
+                while not command:
+                    command = raw_input("(B)uy (A)uction >").upper()
+                if command == 'B':
+                    player.cash -= self.cost
+                    player.properties.append(self)
+                    self.status = 'OWNED'
+                    self.owner = player
+                elif command == 'A':
+                    pass
+            else:
+                print "You can't afford it."
+        elif self.status == 'OWNED':
+            print "It belongs to %s" % self.owner.name
 
