@@ -1,52 +1,52 @@
 from space import Space
 from tax_space import TaxSpace
 from go_to_jail_space import GoToJailSpace
-
+from property_space import PropertySpace
 
 class GameBoard:
 
     def __init__(self):
         self.spaces = [
             Space("Go"),
-            Space("Mediterranean Avenue"),
+            PropertySpace("Mediterranean Avenue",60),
             Space("Community Chest"),
-            Space("Baltic Avenut"),
+            PropertySpace("Baltic Avenue",60),
             TaxSpace("Income Tax", 200),
-            Space("Redding Railroad"),
-            Space("Oriental Avenue"),
+            PropertySpace("Redding Railroad",200),
+            PropertySpace("Oriental Avenue",100),
             Space("Chance"),
-            Space("Vermont Avenue"),
-            Space("Connecticut Avenue"),
+            PropertySpace("Vermont Avenue",100),
+            PropertySpace("Connecticut Avenue",120),
             Space("Jail"),
-            Space("St. Charles Place"),
-            Space("Electric Company"),
-            Space("States Avenue"),
-            Space("Virginia Avenue"),
-            Space("Pennsylvania Railroad"),
-            Space("St. James Place"),
+            PropertySpace("St. Charles Place",140),
+            PropertySpace("Electric Company",150),
+            PropertySpace("States Avenue",140),
+            PropertySpace("Virginia Avenue",160),
+            PropertySpace("Pennsylvania Railroad",200),
+            PropertySpace("St. James Place",180),
             Space("Community Chest"),
-            Space("Tennessee Avenue"),
-            Space("New York Avenue"),
+            PropertySpace("Tennessee Avenue",180),
+            PropertySpace("New York Avenue",200),
             Space("Free Parking"),
-            Space("Kentucky Avenue"),
+            PropertySpace("Kentucky Avenue",220),
             Space("Chance"),
-            Space("Indiana Avenue"),
-            Space("Illinois Avenue"),
-            Space("B&O Railroad"),
-            Space("Atlantic Avenue"),
-            Space("Ventnor Avenue"),
-            Space("Waterworks"),
-            Space("Marvin Gardens"),
+            PropertySpace("Indiana Avenue",220),
+            PropertySpace("Illinois Avenue",240),
+            PropertySpace("B&O Railroad",200),
+            PropertySpace("Atlantic Avenue",260),
+            PropertySpace("Ventnor Avenue",260),
+            PropertySpace("Water Works",150),
+            PropertySpace("Marvin Gardens",280),
             GoToJailSpace("Go To Jail"),
-            Space("Pacific Avenue"),
-            Space("Norh Carolina Avenue"),
+            PropertySpace("Pacific Avenue",300),
+            PropertySpace("North Carolina Avenue",300),
             Space("Community Chest"),
-            Space("Pennsylvania Avenue"),
-            Space("Short Line"),
+            PropertySpace("Pennsylvania Avenue",320),
+            PropertySpace("Short Line",200),
             Space("Chance"),
-            Space("Park Place"),
+            PropertySpace("Park Place",350),
             TaxSpace("Luxury Tax", 100),
-            Space("Boardwalk" )]
+            PropertySpace("Boardwalk",400)]
         self.size = len(self.spaces)
 
     def get_position(self, space_name):
