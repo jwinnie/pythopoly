@@ -7,4 +7,4 @@ class Space:
         self.name = name
 
     def handle_player_landing(self, player):
-        print "You landed on %s" % self.name
+        print "\033[93mYou landed on %s\033[0m" % self.name

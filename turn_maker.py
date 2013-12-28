@@ -6,6 +6,7 @@ from dice import Dice
 class TurnMaker:
 
     def setup(self, board):
+        print "\033[0m"
         self.number_of_players = int(raw_input("How many people are playing? "))
         self.players = []
         for player in range(0,self.number_of_players):
