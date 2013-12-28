@@ -10,5 +10,5 @@ class CardSpace(Space):
     def handle_player_landing(self, player):
         Space.handle_player_landing(self, player)
         card = self.deck.next_card()
-        print card
+        card.handle_player(player)
 
