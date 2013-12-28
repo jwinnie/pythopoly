@@ -3,12 +3,12 @@ from tax_space import TaxSpace
 from go_to_jail_space import GoToJailSpace
 from property_space import PropertySpace
 from card_space import CardSpace
-from card_deck import CardDeck
+from chance_card_deck import ChanceCardDeck
 
 class GameBoard:
 
     def __init__(self):
-        chance_deck = CardDeck()
+        chance_deck = ChanceCardDeck()
         self.spaces = [
             Space("Go"),
             PropertySpace("Mediterranean Avenue",60),
