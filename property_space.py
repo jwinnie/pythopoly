@@ -28,9 +28,12 @@ class PropertySpace(Space):
             else:
                 print "You can't afford it."
         elif self.status == 'OWNED':
-            print "It belongs to %s" % self.owner.name
-            print "The rent is $%i" % self.rent
-            amount_paid = player.pay_money(self.rent)
-            self.owner.receive_money(amount_paid)
+            if player == self.owner:
+                print "You own it!"
+            else:
+                print "It belongs to %s" % self.owner.name
+                print "The rent is $%i" % self.rent
+                amount_paid = player.pay_money(self.rent)
+                self.owner.receive_money(amount_paid)
 
 
