@@ -4,15 +4,17 @@ from go_to_jail_space import GoToJailSpace
 from property_space import PropertySpace
 from card_space import CardSpace
 from chance_card_deck import ChanceCardDeck
+from community_chest_card_deck import CommunityChestCardDeck
 
 class GameBoard:
 
     def __init__(self):
         chance_deck = ChanceCardDeck()
+        community_chest_card_deck = CommunityChestCardDeck()
         self.spaces = [
             Space("Go"),
             PropertySpace("Mediterranean Avenue",60,2),
-            Space("Community Chest"),
+            CardSpace("Community Chest",community_chest_card_deck),
             PropertySpace("Baltic Avenue",60,4),
             TaxSpace("Income Tax", 200),
             PropertySpace("Reading Railroad",200,25),
@@ -27,7 +29,7 @@ class GameBoard:
             PropertySpace("Virginia Avenue",160,12),
             PropertySpace("Pennsylvania Railroad",200,25),
             PropertySpace("St. James Place",180,14),
-            Space("Community Chest"),
+            CardSpace("Community Chest",community_chest_card_deck),
             PropertySpace("Tennessee Avenue",180,14),
             PropertySpace("New York Avenue",200,16),
             Space("Free Parking"),
@@ -43,7 +45,7 @@ class GameBoard:
             GoToJailSpace("Go To Jail"),
             PropertySpace("Pacific Avenue",300,26),
             PropertySpace("North Carolina Avenue",300,26),
-            Space("Community Chest"),
+            CardSpace("Community Chest",community_chest_card_deck),
             PropertySpace("Pennsylvania Avenue",320,28),
             PropertySpace("Short Line",200,25),
             CardSpace("Chance",chance_deck),
