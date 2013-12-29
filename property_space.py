@@ -19,7 +19,7 @@ class PropertySpace(Space):
                 while not command:
                     command = raw_input("(B)uy (A)uction >").upper()
                 if command == 'B':
-                    player.cash -= self.cost
+                    player.pay_money(self.cost)
                     player.properties.append(self)
                     self.status = 'OWNED'
                     self.owner = player
@@ -30,7 +30,7 @@ class PropertySpace(Space):
         elif self.status == 'OWNED':
             print "It belongs to %s" % self.owner.name
             print "The rent is $%i" % self.rent
-            if player.cash >= self.rent:
-                self.owner.cash += self.rent
-                player.cash -= self.rent
+            amount_paid = player.pay_money(self.rent)
+            self.owner.receive_money(amount_paid)
+
 

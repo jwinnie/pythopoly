@@ -8,6 +8,7 @@ class Player:
         self.position = 0
         self.in_jail = False
         self.properties = []
+        self.status = 'ACTIVE'
 
     def move_to_space(self, space_name):
         new_position = self.board.get_position(space_name)
@@ -56,4 +57,29 @@ class Player:
         if self.properties:
             print "You own: " + ",".join([p.name for p in self.properties])
 
-        
+
+    # Returns the amount actually paid
+
+    def pay_money(self, amount_owed):
+        if self.cash >= amount_owed:
+            print "%s pays $%i" % (self.name, amount_owed)
+            self.cash -= amount_owed
+            amount_actually_paid = amount_owed
+        else:
+            print "%s owes $%i but only has %i" % (self.name, amount, self.cash)
+            amount_actually_paid = self.cash
+            self.cash = 0
+            self.status = 'BANKRUPT'
+            print "%s is bankrupt" % self.name
+        return amount_actually_paid
+
+    def receive_money(self, amount):
+        print "%s receives $%i" % (self.name, amount)
+        self.cash += amount
+        return amount
+
+    def receive_or_pay_money(self, amount):
+        if amount > 0:
+            return self.receive_money(amount)
+        else:
+            return 0-self.pay_money(0-amount)

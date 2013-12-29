@@ -8,4 +8,4 @@ class MoneyCard(Card):
 
     def handle_player(self, player):
         Card.handle_player(self, player)
-        player.cash += self.amount
+        player.receive_or_pay_money(self.amount)
