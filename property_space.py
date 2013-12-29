@@ -4,9 +4,10 @@ from space import Space
 
 class PropertySpace(Space):
 
-    def __init__(self, name, cost):
+    def __init__(self, name, cost, rent):
         Space.__init__(self, name)
         self.cost = cost
+        self.rent = rent
         self.status = 'AVAILABLE'
 
     def handle_player_landing(self, player):
@@ -28,4 +29,8 @@ class PropertySpace(Space):
                 print "You can't afford it."
         elif self.status == 'OWNED':
             print "It belongs to %s" % self.owner.name
+            print "The rent is $%i" % self.rent
+            if player.cash >= self.rent:
+                self.owner.cash += self.rent
+                player.cash -= self.rent
 
