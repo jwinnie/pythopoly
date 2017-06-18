@@ -3,6 +3,7 @@ from card_deck import CardDeck
 from card import Card
 from go_to_space_card import GoToSpaceCard
 from money_card import MoneyCard
+from jail_card import JailCard
 
 class ChanceCardDeck(CardDeck):
 
@@ -14,8 +15,8 @@ class ChanceCardDeck(CardDeck):
         Card("Go back 3 spaces"),
         MoneyCard("Bank pays you dividend of $50",50),
         Card("Advance to the nearest railroad. If unowned, you may buy it from the bank. If owned, pay owner twice the rental to which they are otherwise entitled"),
-        Card("Go to Jail. Go directly to Jail. Do not pass Go. Do not collect $200."),
-        Card("Get out of Jail free. This card may be kept until needed or traded."),
+        JailCard("Go to Jail. Go directly to Jail. Do not pass Go. Do not collect $200.", True),
+        JailCard("Get out of Jail free. This card may be kept until needed or traded.", False),
         Card("Advance to the nearest railroad. If unowned, you may buy it from the bank. If owned, pay owner twice the rental to which they are otherwise entitled"),
         Card("Advance to the nearest utility. If unowned, you may buy it from the bank. If owned, throw dice and pay owner a total 10 times amount thrown."),
         GoToSpaceCard("Take a trip to Reading Railroad. If you pass Go, collect $200.","Reading Railroad"),

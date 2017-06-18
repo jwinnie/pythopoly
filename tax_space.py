@@ -9,4 +9,5 @@ class TaxSpace(Space):
 
     def handle_player_landing(self, player):
         Space.handle_player_landing(self, player)
+        print("Deducting ${} :(".format(self.tax_amount))
         player.cash -= self.tax_amount

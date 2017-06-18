@@ -1,10 +1,11 @@
 
 from random import randint
+import time
 
 class Dice:
 
     def roll(self):
-        raw_input("Press ENTER to roll the dice: ")
+        input("Press ENTER to roll the dice: ")
         self.values = (randint(1,6),randint(1,6))
     
     def total(self):
@@ -14,10 +15,11 @@ class Dice:
         return self.values[0] == self.values[1]
 
     def description(self):
-        return "A %i and a %i for a total of %i" % \
-            (self.values[0], self.values[1], self.total())
+        print("[ \033[1mDICE: \033[0mA \033[1m{}\033[0m and a \033[1m{}\033[0m for a total of \033[1m{}\033[0m ]".format(self.values[0], self.values[1], self.total()))
+        time.sleep(1)
 
     def description_with_doubles(self):
-        return self.description() + (" -- Doubles!" if self.is_doubles() else  "")
-
+        self.description()
+        if self.is_doubles():
+            print("\033[35mDoubles!\033[0m")
 

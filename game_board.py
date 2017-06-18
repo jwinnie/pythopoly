@@ -51,7 +51,8 @@ class GameBoard:
             CardSpace("Chance",chance_deck),
             PropertySpace("Park Place",350,35),
             TaxSpace("Luxury Tax", 100),
-            PropertySpace("Boardwalk",400,50)]
+            PropertySpace("Boardwalk",400,50)
+	]
         self.size = len(self.spaces)
 
     def get_position(self, space_name):
